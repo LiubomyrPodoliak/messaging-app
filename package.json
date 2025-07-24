@@ -1,0 +1,21 @@
+{
+  "name": "commboxtest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serve -l 5000 ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.1.0",
+    "playwright": "^1.54.1",
+    "serve": "^14.2.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
