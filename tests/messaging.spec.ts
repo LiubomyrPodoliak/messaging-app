@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { MessagingAppPage } from './pages/MessagingAppPage';
+import { MessagingAppPage } from '../pages/MessagingAppPage';
 
 const MOCK_API_URL = '**/api/sendMessage';
 

@@ -3,26 +3,19 @@
 ## 📦 Setup Instructions
 
 
-1. **Install dependencies:**
-   ```bash
+
+1. Install dependencies:
    npm install
-   ```
 
-2. **Start the static server (required for tests):**
-   ```bash
+2. Start the static server (required for tests):
    npm run start
-   ```
-   This serves the app at http://localhost:5000. Keep this running in a terminal.
+   (This serves the app at http://localhost:5000. Keep this running in a terminal.)
 
-3. **Run Playwright tests (in a separate terminal):**
-   ```bash
+3. Run Playwright tests (in a separate terminal):
    npx playwright test
-   ```
 
-4. **View HTML test report:**
-   ```bash
+4. View HTML test report:
    npx playwright show-report
-   ```
 
 **Note:**
 - Playwright's API mocking only works during automated test runs. If you open the app manually in your browser, sending a message will return a 404 unless you implement a real backend.
