@@ -23,11 +23,12 @@ export function step(template: string) {
     };
 }
 
-// Отримує імена параметрів функції (працює для простих випадків)
+// Gets the names of function parameters 
 function getParamNames(fn: Function): string[] {
     const fnStr = fn.toString().replace(/\/\*.*?\*\//g, '');
     const result = fnStr
         .slice(fnStr.indexOf('(') + 1, fnStr.indexOf(')'))
         .match(/([^\s,]+)/g);
+        
     return result || [];
 }
