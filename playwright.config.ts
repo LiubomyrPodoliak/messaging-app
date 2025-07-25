@@ -10,7 +10,8 @@ export default defineConfig({
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     video: 'off',
-    screenshot: 'only-on-failure',
+    screenshot: 'only-on-failure', // already set, ensures screenshots on failure
+    trace: 'retain-on-failure', // optional: keep trace for failed tests
   },
   projects: [
     {
