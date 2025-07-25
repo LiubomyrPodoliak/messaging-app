@@ -35,7 +35,7 @@ export class MessagingAppPage {
     return this.messageList.locator('li:last-child').textContent();
   }
 
-  @step("Verify message present: {message}")
+  @step("Verified message present: {message}")
   async verifyMessagePresnt(message: string) {
     const lastMessage = this.messageList.locator('li:last-child');
     await lastMessage.waitFor({ state: 'attached', timeout: 5000 });
