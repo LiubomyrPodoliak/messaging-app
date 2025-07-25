@@ -21,15 +21,12 @@ test.describe('Messaging App', () => {
       });
     });
 
-    console.log('[TEST] Before navigation');
     const app = new MessagingAppPage(page);
     await app.goto();
-    console.log('[TEST] After navigation');
     const testMessage = 'Test Message';
     await app.typeMessage(testMessage);
     await app.sendMessage();
 
-    // Wait for the message to appear in the list robustly
     const lastMessage = app.messageList.locator('li:last-child');
     await expect(lastMessage).toBeAttached({ timeout: 5000 });
     await expect(lastMessage).toHaveText(testMessage, { timeout: 5000 });
