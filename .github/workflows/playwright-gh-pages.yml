@@ -40,6 +40,5 @@ jobs:
         with:
           name: playwright-report
           path: gh-pages
-      - name: Show GitHub Pages report link
-        run: |
-          echo "Report: https://liubomyrpodoliak.github.io/messaging-app/"
+      - name: Add GitHub Pages report link to summary
+        run: echo "[View Playwright HTML Report](https://liubomyrpodoliak.github.io/messaging-app/)" >> $GITHUB_STEP_SUMMARY

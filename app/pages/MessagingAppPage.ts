@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class MessagingAppPage {
   readonly page: Page;
@@ -13,7 +13,7 @@ export class MessagingAppPage {
     this.messageList = page.locator('#message-list');
   }
 
-  async goto() {
+  async openDummyMessagingApp() {
     // Open the HTML file via local HTTP server for CORS compatibility
     await this.page.goto('http://localhost:5000/dummy-messaging-app.html');
   }
@@ -28,5 +28,11 @@ export class MessagingAppPage {
 
   async getLastMessage() {
     return this.messageList.locator('li:last-child').textContent();
+  }
+
+  async verifyMessagePresnt(message: string) {
+    const lastMessage = this.messageList.locator('li:last-child');
+    await lastMessage.waitFor({ state: 'attached', timeout: 5000 });
+    await expect(lastMessage).toHaveText(message, { timeout: 5000 });
   }
 }
