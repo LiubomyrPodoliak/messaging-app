@@ -7,7 +7,6 @@
 1. Install dependencies:
    npm install
 
-
 2. The static server is started automatically by Playwright (see `playwright.config.ts`).
    No manual step is needed.
 
