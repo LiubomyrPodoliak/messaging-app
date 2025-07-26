@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  messaging-app-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,17 +19,13 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Start static server
-        run: npm run start &
-      - name: Wait for server to be ready
-        run: npx wait-on http://localhost:5000/dummy-messaging-app.html
       - name: Run Playwright tests
         run: npx playwright test --reporter=html
       - name: Prepare report for GitHub Pages
         run: |
           rm -rf gh-pages
           mv playwright-report gh-pages
-      - name: Upload HTML report to GitHub Pages
+      - name: Upload HTML report to GitHub Pages  
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
