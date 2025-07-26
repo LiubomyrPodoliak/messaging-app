@@ -30,11 +30,15 @@ export class MessagingAppPage {
     await this.sendButton.click();
   }
   
-  @step("Verified message present: {message}")
-  async verifyMessagePresnt(message: string) {
-    const lastMessage = this.messageList.locator('li:last-child');
-
-    await lastMessage.waitFor({ state: 'attached', timeout: 5000 });
-    await expect(lastMessage).toContainText(message, { timeout: 5000 });
+  @step("Verified message display: {message}")
+  async isMessageDisplayed(messages: string | string[]) {
+    const arr = typeof messages === 'string' ? [messages] : messages;
+    
+    for (const msg of arr) {
+      // Wait for any message item containing the expected text
+      const messageLocator = this.messageList.locator('li', { hasText: msg });
+      await messageLocator.waitFor({ state: 'visible', timeout: 5000 });
+      await expect(messageLocator).toContainText(msg, { timeout: 5000 });
+    }
   }
 }

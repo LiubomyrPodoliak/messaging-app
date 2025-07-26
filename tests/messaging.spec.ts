@@ -2,7 +2,20 @@ import { test } from '../app/fixtures/messagingAppFixture';
 import { mockSendMessage } from '../utils/mockApi';
 
 test.describe('Messaging App', () => {
-  test('User can send a message and see it in the list', async ({ page, messagingAppPage }) => {
+  test('Verify User can send multiple messages', async ({ page, messagingAppPage }) => {
+    mockSendMessage(page);
+
+    await messagingAppPage.openDummyMessagingApp();
+    const testMessages = ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'];
+    for (const msg of testMessages) {
+      await messagingAppPage.typeMessage(msg);
+      await messagingAppPage.sendMessage();
+    }
+
+    await messagingAppPage.isMessageDisplayed(testMessages);
+  });
+
+  test('Verify User can send a single message', async ({ page, messagingAppPage }) => {
     // Mock the API to simulate sending a message
     mockSendMessage(page);
 
@@ -11,6 +24,6 @@ test.describe('Messaging App', () => {
     await messagingAppPage.typeMessage(testMessage);
     await messagingAppPage.sendMessage();
 
-    await messagingAppPage.verifyMessagePresnt(testMessage);
+    await messagingAppPage.isMessageDisplayed(testMessage);
   });
 });
