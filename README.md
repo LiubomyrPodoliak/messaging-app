@@ -7,9 +7,9 @@
 1. Install dependencies:
    npm install
 
-2. Start the static server (required for tests):
-   npm run start
-   (This serves the app at http://localhost:5000. Keep this running in a terminal.)
+
+2. The static server is started automatically by Playwright (see `playwright.config.ts`).
+   No manual step is needed.
 
 3. Run Playwright tests (in a separate terminal):
    npx playwright test
@@ -45,8 +45,6 @@
 
 ---
 
-
----
 
 **dummy-messaging-app.html** is included and used as the test target UI.
 
