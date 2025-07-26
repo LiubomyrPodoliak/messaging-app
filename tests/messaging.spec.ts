@@ -2,6 +2,8 @@ import { test } from '../app/fixtures/messagingAppFixture';
 import { mockSendMessage } from '../utils/mockApi';
 
 test.describe('Messaging App', () => {
+
+  // test failde on ci, need to investiagate + failed jobs without report need to check
   test('Verify User can send multiple messages', async ({ page, messagingAppPage }) => {
     mockSendMessage(page);
 
