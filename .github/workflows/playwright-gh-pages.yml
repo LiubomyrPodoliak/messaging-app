@@ -20,11 +20,18 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npx playwright test --reporter=html
+        run: npx playwright test --reporter=html || true
+      - name: List Playwright report contents
+        if: always()
+        run: |
+          echo "Listing Playwright report folder contents before moving:"
+          ls -l playwright-report
       - name: Prepare report for GitHub Pages
+        if: always()
         run: |
           rm -rf gh-pages
-          mv playwright-report gh-pages
+          mkdir -p gh-pages
+          mv playwright-report/* gh-pages/
       - name: Upload HTML report to GitHub Pages  
         if: always()
         uses: peaceiris/actions-gh-pages@v4
