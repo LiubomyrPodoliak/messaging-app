@@ -6,21 +6,41 @@
 </head>
 <body>
   <h1>Simple Messenger</h1>
-  <input type="text" id="message-input" placeholder="Type your message..." />
+  <input type="text" id="message-input" placeholder="Type your message..." maxlength="50" />
   <button id="send-button">Send</button>
   <div id="error-message" style="color: red; display: none; margin-top: 8px;"></div>
   <ul id="message-list"></ul>
 
   <script>
-    document.getElementById('send-button').addEventListener('click', async () => {
-      const input = document.getElementById('message-input');
-      const errorDiv = document.getElementById('error-message');
+    const input = document.getElementById('message-input');
+    const errorDiv = document.getElementById('error-message');
+    const sendButton = document.getElementById('send-button');
+
+    input.addEventListener('input', () => {
+      errorDiv.style.display = 'none';
+      errorDiv.textContent = '';
+      if (input.value.length > 15) {
+        errorDiv.textContent = 'Message cannot exceed 15 characters!';
+        errorDiv.style.display = 'block';
+        sendButton.disabled = true;
+      } else {
+        sendButton.disabled = false;
+      }
+    });
+
+    sendButton.addEventListener('click', async () => {
       const message = input.value;
       errorDiv.style.display = 'none';
       errorDiv.textContent = '';
       if (!message) {
         errorDiv.textContent = 'Message cannot be empty!';
         errorDiv.style.display = 'block';
+        return;
+      }
+      if (message.length > 15) {
+        errorDiv.textContent = 'Message cannot exceed 15 characters!';
+        errorDiv.style.display = 'block';
+        sendButton.disabled = true;
         return;
       }
 
@@ -39,6 +59,7 @@
           li.innerText = data.message;
           document.getElementById('message-list').appendChild(li);
           input.value = '';
+          sendButton.disabled = false;
           console.log('[HTML] Appended message to list:', data.message);
         }
       } catch (e) {

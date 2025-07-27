@@ -20,6 +20,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Clean old Playwright report
+        run: rm -rf playwright-report
       - name: Run Playwright tests
         run: npx playwright test --reporter=html
       - name: List Playwright report contents
