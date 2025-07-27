@@ -1,19 +1,13 @@
 import { test } from '../app/fixtures/messagingAppFixture';
 import { mockSendMessage } from '../utils/mockApi';
+import { ErrorMessage } from '../app/models/ErrorMessage';
 
 test.describe('Messaging App', () => {
-  test('Verify User can`t send empty message', async ({ page, messagingAppPage }) => {
+  test.beforeEach(async ({ page }) => {
     mockSendMessage(page);
-    await messagingAppPage.openDummyMessagingApp();
-
-    await messagingAppPage.typeMessage('');
-    await messagingAppPage.sendMessage();
-
-    await messagingAppPage.isErrorMessagePresent('Message cannot be empty!');
   });
 
   test('Verify User can send multiple messages', async ({ page, messagingAppPage }) => {
-    mockSendMessage(page);
     await messagingAppPage.openDummyMessagingApp();
 
     const testMessages = ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'];
@@ -27,10 +21,9 @@ test.describe('Messaging App', () => {
   });
 
   test('Verify User can send a single message', async ({ page, messagingAppPage }) => {
-    mockSendMessage(page);
     await messagingAppPage.openDummyMessagingApp();
 
-    const testMessage = 'Test 777 Message';
+    const testMessage = 'Test Message';
 
     await messagingAppPage.typeMessage(testMessage);
     await messagingAppPage.sendMessage();

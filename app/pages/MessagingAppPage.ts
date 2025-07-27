@@ -50,4 +50,9 @@ export class MessagingAppPage {
 
     await expect(messageLocator).toContainText(expectedText);
   }
+
+  @step("Verified send button is disabled")
+  async isSendButtonDisabled(){
+    await expect(this.sendButton).toBeDisabled();
+  }
 } 
