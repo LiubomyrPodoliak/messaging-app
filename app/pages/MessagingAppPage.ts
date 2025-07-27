@@ -25,6 +25,7 @@ export class MessagingAppPage {
     await this.messageInput.fill(message);
   }
 
+  @step("Typed message: {message} with delay {delayMs} ms")
   async typeMessageWithDelay(message: string, delayMs?: number) {
     // Use pressSequentially for per-key delays (for special keyboard handling)
     await this.messageInput.pressSequentially(message, { delay: delayMs ?? 0 });
@@ -37,9 +38,8 @@ export class MessagingAppPage {
 
   @step("Verified message display: {message}")
   async isMessageDisplayed(message: string) {
-
-    // Wait for any message item containing the expected text
     const messageLocator = this.messageList.locator('li', { hasText: message });
+    
     await messageLocator.waitFor({ state: 'visible', timeout: 5000 });
     await expect(messageLocator).toContainText(message, { timeout: 5000 });
   }
