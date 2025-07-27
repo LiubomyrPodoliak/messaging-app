@@ -39,7 +39,6 @@
 - Integrate Allure for advanced reporting.
 - Parameterize tests for broader coverage.
 - Add linting and code formatting.
-- Support for mobile viewport testing.
 - Add a mock server for manual testing if needed.
 
 ---
@@ -57,3 +56,11 @@ The workflow `.github/workflows/playwright.yml` will:
 - Upload the Playwright HTML report as an artifact
 
 No additional configuration is needed—just push to GitHub and the tests will run automatically.
+
+## 📊 Viewing Test Reports (CI)
+
+After each CI run, the Playwright HTML report is published to GitHub Pages:
+
+- [View Playwright HTML Report](https://liubomyrpodoliak.github.io/messaging-app/)
+
+You can also download the report as an artifact from the workflow run summary.
