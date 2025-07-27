@@ -43,5 +43,4 @@ export class MessagingAppPage {
     await messageLocator.waitFor({ state: 'visible', timeout: 5000 });
     await expect(messageLocator).toContainText(message, { timeout: 5000 });
   }
-
 }
