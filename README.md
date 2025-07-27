@@ -57,6 +57,19 @@ The workflow `.github/workflows/playwright.yml` will:
 
 No additional configuration is needed—just push to GitHub and the tests will run automatically.
 
+
+## 🚦 Manually Triggering CI Job
+
+You can manually run the GitHub Actions job (`Messaging app tests`) without pushing code:
+
+1. Go to your repository on GitHub.
+2. Click the **Actions** tab.
+3. Select the workflow named **Messaging app tests** from the left sidebar.
+4. Click the **Run workflow** button (top right).
+5. Optionally, select a branch and click **Run workflow** to start the job.
+
+This will run the full test suite and publish the HTML report as usual.
+
 ## 📊 Viewing Test Reports (CI)
 
 After each CI run, the Playwright HTML report is published to GitHub Pages:
