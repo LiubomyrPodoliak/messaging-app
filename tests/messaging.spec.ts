@@ -2,6 +2,15 @@ import { test } from '../app/fixtures/messagingAppFixture';
 import { mockSendMessage } from '../utils/mockApi';
 
 test.describe('Messaging App', () => {
+  test('Verify User can`t send empty message', async ({ page, messagingAppPage }) => {
+    mockSendMessage(page);
+    await messagingAppPage.openDummyMessagingApp();
+
+    await messagingAppPage.typeMessage('');
+    await messagingAppPage.sendMessage();
+
+    await messagingAppPage.isErrorMessagePresent('Message cannot be empty!');
+  });
 
   test('Verify User can send multiple messages', async ({ page, messagingAppPage }) => {
     mockSendMessage(page);
@@ -12,6 +21,7 @@ test.describe('Messaging App', () => {
     for (const msg of testMessages) {
       await messagingAppPage.typeMessageWithDelay(msg, 100);
       await messagingAppPage.sendMessage();
+
       await messagingAppPage.isMessageDisplayed(msg);
     }
   });
@@ -24,6 +34,7 @@ test.describe('Messaging App', () => {
 
     await messagingAppPage.typeMessage(testMessage);
     await messagingAppPage.sendMessage();
+    
     await messagingAppPage.isMessageDisplayed(testMessage);
   });
 });

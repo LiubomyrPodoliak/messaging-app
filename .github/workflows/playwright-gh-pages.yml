@@ -1,4 +1,4 @@
-name: Playwright Tests and Publish Report
+name: Messaging app tests
 
 on:
   push:

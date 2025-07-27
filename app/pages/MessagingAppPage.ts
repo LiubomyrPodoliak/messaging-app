@@ -43,4 +43,11 @@ export class MessagingAppPage {
     await messageLocator.waitFor({ state: 'visible', timeout: 5000 });
     await expect(messageLocator).toContainText(message, { timeout: 5000 });
   }
-}
+
+  @step("Verified error message display: {expectedText}")
+  async isErrorMessagePresent(expectedText: string) {
+    const messageLocator = this.page.locator('#error-message');
+
+    await expect(messageLocator).toContainText(expectedText);
+  }
+} 
