@@ -10,15 +10,15 @@ test.describe('Messaging App', () => {
     await messagingAppPage.openDummyMessagingApp();
     const testMessages = ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'];
     for (const msg of testMessages) {
-      await messagingAppPage.typeMessage(msg);
+      await messagingAppPage.typeMessageWithDelay(msg, 100);
       await messagingAppPage.sendMessage();
-    }
 
-    await messagingAppPage.isMessageDisplayed(testMessages);
+      await messagingAppPage.isMessageDisplayed(msg);
+    }
   });
 
   test('Verify User can send a single message', async ({ page, messagingAppPage }) => {
-    // Mock the API to simulate sending a message
+    // Mock the API to simulate sending a   message
     mockSendMessage(page);
 
     await messagingAppPage.openDummyMessagingApp();
