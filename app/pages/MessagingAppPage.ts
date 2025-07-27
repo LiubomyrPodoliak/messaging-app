@@ -39,7 +39,7 @@ export class MessagingAppPage {
   @step("Verified message display: {message}")
   async isMessageDisplayed(message: string) {
     const messageLocator = this.messageList.locator('li', { hasText: message });
-    
+
     await messageLocator.waitFor({ state: 'visible', timeout: 5000 });
     await expect(messageLocator).toContainText(message, { timeout: 5000 });
   }
