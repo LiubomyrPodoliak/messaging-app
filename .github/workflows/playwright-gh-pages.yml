@@ -20,7 +20,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npx playwright test --reporter=html || true
+        run: npx playwright test --reporter=html
       - name: List Playwright report contents
         if: always()
         run: |
