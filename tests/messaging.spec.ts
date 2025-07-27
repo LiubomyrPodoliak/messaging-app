@@ -2,7 +2,7 @@ import { test } from '../app/fixtures/messagingAppFixture';
 import { mockSendMessage } from '../utils/mockApi';
 
 test.describe('Messaging App', () => {
-  test('Verify User cannot send empty message', async ({ page, messagingAppPage }) => {
+  test('Verify User can`t send empty message', async ({ page, messagingAppPage }) => {
     mockSendMessage(page);
     await messagingAppPage.openDummyMessagingApp();
 

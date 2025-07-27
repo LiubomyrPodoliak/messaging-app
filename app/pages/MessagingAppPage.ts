@@ -2,7 +2,6 @@ import { Page, Locator, expect } from '@playwright/test';
 import { step } from "../../utils/stepHelper";
 
 export class MessagingAppPage {
-  // ...existing code...
   readonly page: Page;
   readonly messageInput: Locator;
   readonly sendButton: Locator;
@@ -45,10 +44,10 @@ export class MessagingAppPage {
     await expect(messageLocator).toContainText(message, { timeout: 5000 });
   }
 
-  @step("Verified error message presence: {expectedText}")
+  @step("Verified error message display: {expectedText}")
   async isErrorMessagePresent(expectedText: string) {
-    const errorText = await this.page.locator('#error-message').textContent();
+    const messageLocator = this.page.locator('#error-message');
 
-    return errorText?.includes(expectedText);
+    await expect(messageLocator).toContainText(expectedText);
   }
 } 
