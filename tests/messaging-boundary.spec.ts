@@ -16,7 +16,8 @@ test.describe('Boundary Values Analysis: Message Input', () => {
         await messagingAppPage.isErrorMessagePresent(ErrorMessage.Empty);
     });
 
-    test('Verify message is sent for minimum valid input (1 char)', async ({ messagingAppPage }) => {
+    test('Verify message is sent for minimum valid input (1 char)', {tag: '@smoke'},
+         async ({ messagingAppPage }) => {
         const validMin = 'a';
 
         await messagingAppPage.openDummyMessagingApp();
@@ -25,7 +26,7 @@ test.describe('Boundary Values Analysis: Message Input', () => {
         await messagingAppPage.isMessageDisplayed(validMin);
     });
 
-    test('Verify message is sent for maximum valid input (15 chars)', async ({ messagingAppPage }) => {
+    test('Verify message is sent for maximum valid input (15 chars)',{tag: '@regression'}, async ({ messagingAppPage }) => {
         const validMax = 'a'.repeat(MAX_LENGTH);
 
         await messagingAppPage.openDummyMessagingApp();
