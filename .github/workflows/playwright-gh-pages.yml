@@ -1,11 +1,25 @@
 name: Messaging app tests
 
+
+# Triggers: on push, PR, or manual run (with optional tag input)
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Select Playwright tag to run'
+        required: false
+        default: ''
+        type: choice
+        options:
+          - ''
+          - smoke
+          - regression
+          - sanity
+          - critical
 
 jobs:
   messaging-app-tests:
@@ -22,8 +36,15 @@ jobs:
         run: npx playwright install --with-deps
       - name: Clean old Playwright report
         run: rm -rf playwright-report
+      # Run Playwright tests, optionally filtering by tag if provided
       - name: Run Playwright tests
-        run: npx playwright test --reporter=html
+        run: |
+          if [ -n "${{ github.event.inputs.tag }}" ]; then
+            echo "Running tests with tag: ${{ github.event.inputs.tag }}"
+            npx playwright test --grep @${{ github.event.inputs.tag }} --reporter=html
+          else
+            npx playwright test --reporter=html
+          fi
       - name: List Playwright report contents
         if: always()
         run: |
