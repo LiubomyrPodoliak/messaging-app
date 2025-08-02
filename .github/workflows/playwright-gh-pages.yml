@@ -61,9 +61,8 @@ jobs:
       - name: Prepare report for GitHub Pages
         if: always()
         run: |
-          rm -rf gh-pages
-          mkdir -p gh-pages
-          mv playwright-report/* gh-pages/
+          mkdir -p gh-pages/${{ github.run_id }}
+          cp -r playwright-report/* gh-pages/${{ github.run_id }}/
 
       - name: Upload HTML report to GitHub Pages  
         if: always()
@@ -83,4 +82,4 @@ jobs:
 
       - name: Add GitHub Pages report link to summary
         if: always()
-        run: echo "[View Playwright HTML Report](https://liubomyrpodoliak.github.io/messaging-app/)" >> $GITHUB_STEP_SUMMARY
+        run: echo "[View Playwright HTML Report for this run](https://liubomyrpodoliak.github.io/messaging-app/${{ github.run_id }}/)" >> $GITHUB_STEP_SUMMARY
