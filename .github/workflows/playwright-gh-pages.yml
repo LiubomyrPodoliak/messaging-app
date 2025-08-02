@@ -34,8 +34,6 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Clean old Playwright report
-        run: rm -rf playwright-report
       # Run Playwright tests, optionally filtering by tag if provided
       - name: Run Playwright tests
         run: |
